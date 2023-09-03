@@ -18,7 +18,6 @@ const register = async (req: Request, res: Response) => {
       const newUser = await userService.createUser(
         fullName,
         email,
-        'admin',
         hashedPassword
       );
       res.status(201).json(newUser);
@@ -28,7 +27,6 @@ const register = async (req: Request, res: Response) => {
       const newUser = await userService.createUser(
         fullName,
         email,
-        'user',
         hashedPassword
       );
       // TOD0: Create folder for user on signup
@@ -61,10 +59,8 @@ const login = async (req: Request, res: Response) => {
     }
 
     const token = jwt.sign(
-      { userId: user.id, role: user.role, fullName: user.fullName },
-      user.role === 'admin'
-        ? process.env.JWT_SECRET_ADMIN
-        : process.env.JWT_SECRET_USER,
+      { userId: user.id, role: 'user', fullName: user.fullName },
+      process.env.JWT_SECRET_USER,
       {
         expiresIn: '1h',
       }
