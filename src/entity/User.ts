@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Blog } from './Blog';
 
 @Entity()
 export class User {
@@ -11,9 +12,9 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ enum: ['admin', 'user'] })
-  role: string;
-
   @Column()
   password: string;
+
+  @OneToMany(() => Blog, (blog) => blog.user)
+  blogs: Blog[];
 }
