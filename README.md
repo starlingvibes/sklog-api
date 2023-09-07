@@ -1,6 +1,6 @@
 ---
 
-# Sklog API
+# Sklog API (incomplete)
 
 Sklog is a simple API that allows users to create and manage blog posts, whilst also featuring some other functionalities such as pagination and search. It is built using NodeJS, ExpressJS, PostgreSQL, TypeScript, TypeORM and Jest for testing.
 
